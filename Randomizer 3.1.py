@@ -204,15 +204,6 @@ def Chart_maker(num_of_plants,Treat_names,factor_1_array,factor_2_array):
                if(Table==90): Table=74
                end_count=[]
 
-
-               #k=97
-
-       #elif(19<=int(i)<28): ## for Y01a - Y09d
-       #    Names.append(str(Table_2+str(j_1)+str(i_1-18)+chr(k))) ###name of file at output "Y01a-Y09d"
-       #    k+=1
-       #elif(28<=int(i)<37):
-           #Names.append(str(Table_2+str(i_1-18)+chr(k))) ###name of file at output "Y01a-Y09d"
-           #k+=1
        value = int(Row_num_entry.get())
        if (k==(temp+value)):
            k = k-(k-temp)
