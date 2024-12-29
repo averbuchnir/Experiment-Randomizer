@@ -32,7 +32,7 @@ def Save_Table_image():
     y1 = 1000
 
 
-    path = os.getcwd()+"\Table Image.JPG"
+    path = os.getcwd()+r"\Table Image.JPG"
     image_exsist = os.path.isfile("Table Image.JPG")
     if(image_exsist is True):
         os.remove(path)
@@ -180,7 +180,9 @@ def Chart_maker(num_of_plants,Treat_names,factor_1_array,factor_2_array):
    end_count = []
 
    if (Row_letter_entry.get() == ""):  ### check's if row num was input, deafult is 4
-       Letter = "Z"
+       # Letter is the ascii value of the letter A
+       Letter = "A"
+    #    Letter = 65
        Row_letter_entry.insert(0, Letter)
 
    Table = Row_letter_entry.get().upper()
@@ -198,7 +200,7 @@ def Chart_maker(num_of_plants,Treat_names,factor_1_array,factor_2_array):
            end_count.append(i)
            if(end_count.count(18)==4):
                i=0
-               Table+=1
+               Table = chr(ord(Table) + 1)
                if(Table==90): Table=74
                end_count=[]
 
@@ -222,7 +224,7 @@ def Chart_maker(num_of_plants,Treat_names,factor_1_array,factor_2_array):
    Combined_name = [f"{val[0]} ({val[1]})" for val in Combined_name_zip]
 
    Merged_Array = list(zip(Names,Treat_names,factor_1_array,factor_2_array,Combined_name))
-   path = os.getcwd()+"\Treat_file.csv"
+   path = os.getcwd()+r"\Treat_file.csv"
    df = DataFrame(Merged_Array,columns=['Plant Position','Treat Name','Line','Treat',"Combined"]) ### inserting the arrays to csv
    try:
        export_csv = df.to_csv(path, index=None, header=True)
@@ -249,7 +251,7 @@ def Chart_maker(num_of_plants,Treat_names,factor_1_array,factor_2_array):
            counter=1
    #print(Map)
 
-   path_2 = os.getcwd()+"\Map.csv"
+   path_2 = os.getcwd()+r"\Map.csv"
    df_2= DataFrame(Map)
    df_2.shift()[1:]
    try:
@@ -455,7 +457,7 @@ def Table_creation(Treat_Amount,Color_index,Treat_names):
 
 
 def Create_info_file():
-    path =os.getcwd()+"\Info.csv"
+    path =os.getcwd()+r"\Info.csv"
     df = DataFrame(columns=['Line', 'Treat', 'Repetition'])
     file_exists = os.path.isfile("Info.csv")
     export_csv = df.to_csv(path, index=None, header=True) if (file_exists is False) else None
@@ -463,7 +465,7 @@ def Create_info_file():
 def Open_File_Directory():
 
     path = os.getcwd()
-    path_2 = path+"\Info.csv"
+    path_2 = path+r"\Info.csv"
     os.startfile(path)
     if(os.path.isfile(path_2) is False):
         Table_View.delete("all")  ### clears the board
